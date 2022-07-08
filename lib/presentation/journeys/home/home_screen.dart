@@ -63,21 +63,27 @@ class _HomeScreenState extends State<HomeScreen> {
         body: BlocBuilder<MovieCarouselCubit, MovieCarouselState>(
           builder: (context, state) {
             if (state is MovieCarouselLoaded) {
-              return Stack(
-                fit: StackFit.expand,
-                children: <Widget>[
-                  FractionallySizedBox(
-                    alignment: Alignment.topCenter,
-                    heightFactor: 0.6,
-                    child: MovieCarouselWidget(
-                      movies: state.movies,
-                      defaultIndex: state.defaultIndex,
+              return Column(
+                children: [
+                  Expanded(
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: <Widget>[
+                        FractionallySizedBox(
+                          alignment: Alignment.topCenter,
+                          heightFactor: 0.6,
+                          child: MovieCarouselWidget(
+                            movies: state.movies,
+                            defaultIndex: state.defaultIndex,
+                          ),
+                        ),
+                        FractionallySizedBox(
+                          alignment: Alignment.bottomCenter,
+                          heightFactor: 0.4,
+                          child: MovieTabbedWidget(),
+                        ),
+                      ],
                     ),
-                  ),
-                  FractionallySizedBox(
-                    alignment: Alignment.bottomCenter,
-                    heightFactor: 0.4,
-                    child: MovieTabbedWidget(),
                   ),
                 ],
               );
