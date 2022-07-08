@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movieapp/presentation/journeys/favorite/favorite_screen.dart';
+import 'package:movieapp/presentation/journeys/search_movie/search_movie_card.dart';
+import 'package:movieapp/presentation/main-menu/search_screen.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../di/get_it.dart';
 import '../../blocs/movie_backdrop/movie_backdrop_cubit.dart';
@@ -21,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late MovieBackdropCubit movieBackdropCubit;
   late MovieTabbedCubit movieTabbedCubit;
   late SearchMovieCubit searchMovieCubit;
+  var _currentIndex = 0;
 
   @override
   void initState() {
@@ -60,33 +65,70 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
       child: Scaffold(
         drawer: const NavigationDrawer(),
+        bottomNavigationBar: SalomonBottomBar(
+            currentIndex: _currentIndex,
+            onTap: (i) => setState(() => _currentIndex = i),
+            items: [
+              /// Home
+              SalomonBottomBarItem(
+                icon: Icon(Icons.home),
+                title: Text("Home"),
+                selectedColor: Colors.purple,
+              ),
+
+              /// Likes
+              SalomonBottomBarItem(
+                icon: Icon(Icons.favorite_border),
+                title: Text("Likes"),
+                selectedColor: Colors.pink,
+              ),
+
+              /// Search
+              SalomonBottomBarItem(
+                icon: Icon(Icons.search),
+                title: Text("Search"),
+                selectedColor: Colors.orange,
+              ),
+
+              /// Profile
+              SalomonBottomBarItem(
+                icon: Icon(Icons.person),
+                title: Text("Profile"),
+                selectedColor: Colors.teal,
+              ),
+            ]),
         body: BlocBuilder<MovieCarouselCubit, MovieCarouselState>(
           builder: (context, state) {
             if (state is MovieCarouselLoaded) {
-              return Column(
-                children: [
-                  Expanded(
-                    child: Stack(
-                      fit: StackFit.expand,
-                      children: <Widget>[
-                        FractionallySizedBox(
-                          alignment: Alignment.topCenter,
-                          heightFactor: 0.6,
-                          child: MovieCarouselWidget(
-                            movies: state.movies,
-                            defaultIndex: state.defaultIndex,
-                          ),
+              switch (_currentIndex) {
+                case 0:
+                  return Stack(
+                    fit: StackFit.expand,
+                    children: <Widget>[
+                      FractionallySizedBox(
+                        alignment: Alignment.topCenter,
+                        heightFactor: 0.6,
+                        child: MovieCarouselWidget(
+                          movies: state.movies,
+                          defaultIndex: state.defaultIndex,
                         ),
-                        FractionallySizedBox(
-                          alignment: Alignment.bottomCenter,
-                          heightFactor: 0.4,
-                          child: MovieTabbedWidget(),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              );
+                      ),
+                      FractionallySizedBox(
+                        alignment: Alignment.bottomCenter,
+                        heightFactor: 0.4,
+                        child: MovieTabbedWidget(),
+                      ),
+                    ],
+                  );
+                case 1:
+                  return FavoriteScreen();
+                case 2:
+                  return SearchScreen();
+
+                case 3:
+
+                default:
+              }
             } else if (state is MovieCarouselError) {
               return AppErrorWidget(
                 onPressed: () => movieCarouselCubit.loadCarousel(),

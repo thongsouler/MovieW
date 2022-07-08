@@ -21,8 +21,8 @@ class WiredashApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool isDarkTheme = context.read<ThemeCubit>().state == Themes.dark;
     return Wiredash(
-      projectId: 'movie-app-tutorial-k1xtma1',
-      secret: 'wsmigg476q5l4k9mz2njmob4puuuwt58',
+      projectId: 'moviewapptlu-z6jhgk9',
+      secret: 'nJrhc6oSyOmgmayuurYXYZ7CBIi0wthd',
       navigatorKey: navigatorKey,
       child: child,
       options: WiredashOptionsData(

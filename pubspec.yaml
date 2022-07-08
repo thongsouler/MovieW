@@ -44,6 +44,7 @@ dependencies:
   flare_flutter: ^3.0.0
   flutter_localizations:
     sdk: flutter
+  salomon_bottom_bar: ^3.3.1
 
 dev_dependencies:
   hive_generator: ^1.1.0
