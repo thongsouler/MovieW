@@ -26,8 +26,8 @@ class MovieAppBar extends StatelessWidget {
             onPressed: () {
               Scaffold.of(context).openDrawer();
             },
-            icon: SvgPicture.asset(
-              'assets/svgs/menu.svg',
+            icon: Image.asset(
+              'assets/pngs/settings.png',
               height: Sizes.dimen_12.h,
               color: context.read<ThemeCubit>().state == Themes.dark
                   ? Colors.white

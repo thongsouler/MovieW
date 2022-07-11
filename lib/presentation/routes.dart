@@ -4,7 +4,7 @@ import 'package:movieapp/presentation/journeys/watch_video/watch_video_arguments
 
 import '../common/constants/route_constants.dart';
 import 'journeys/favorite/favorite_screen.dart';
-import 'journeys/home/home_screen.dart';
+import 'journeys/home/main_home_screen.dart';
 import 'journeys/login/login_screen.dart';
 import 'journeys/movie_detail/movie_detail_screen.dart';
 import 'journeys/watch_video/watch_video_screen.dart';
@@ -12,7 +12,7 @@ import 'journeys/watch_video/watch_video_screen.dart';
 class Routes {
   static Map<String, WidgetBuilder> getRoutes(RouteSettings setting) => {
         RouteList.initial: (context) => LoginScreen(),
-        RouteList.home: (context) => HomeScreen(),
+        RouteList.home: (context) => MainHomeScreen(),
         RouteList.movieDetail: (context) => MovieDetailScreen(
               movieDetailArguments: setting.arguments as MovieDetailArguments,
             ),

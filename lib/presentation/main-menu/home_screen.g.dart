@@ -18,7 +18,7 @@ import '../widgets/app_dialog.dart';
 import '../widgets/logo.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-class ProfileScreen extends StatelessWidget {
+class Screen extends StatelessWidget {
   final colorizeColors = [
     Colors.purple,
     Colors.blue,
@@ -93,6 +93,19 @@ class ProfileScreen extends StatelessWidget {
                     _showDialog(context);
                   },
                 ),
+                BlocListener<LoginCubit, LoginState>(
+                  listenWhen: (previous, current) => current is LogoutSuccess,
+                  listener: (context, state) {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        RouteList.initial, (route) => false);
+                  },
+                  child: NavigationListItem(
+                    title: TranslationConstants.logout.t(context),
+                    onPressed: () {
+                      BlocProvider.of<LoginCubit>(context).logout();
+                    },
+                  ),
+                ),
                 BlocBuilder<ThemeCubit, Themes>(builder: (context, theme) {
                   return Row(
                     children: [
@@ -126,19 +139,6 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   );
                 }),
-                BlocListener<LoginCubit, LoginState>(
-                  listenWhen: (previous, current) => current is LogoutSuccess,
-                  listener: (context, state) {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        RouteList.initial, (route) => false);
-                  },
-                  child: NavigationListItem(
-                    title: TranslationConstants.logout.t(context),
-                    onPressed: () {
-                      BlocProvider.of<LoginCubit>(context).logout();
-                    },
-                  ),
-                ),
               ],
             ),
           ),

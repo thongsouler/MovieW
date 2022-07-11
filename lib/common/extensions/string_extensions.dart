@@ -4,7 +4,7 @@ import '../../presentation/app_localizations.dart';
 
 extension StringExtension on String {
   String intelliTrim() {
-    return this.length > 15 ? '${this.substring(0, 15)}...' : this;
+    return this.length > 10 ? '${this.substring(0, 10)}...' : this;
   }
 
   String t(BuildContext context) {

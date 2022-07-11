@@ -29,4 +29,6 @@ class TranslationConstants {
   static const String enterTMDbUsername = 'enterTMDbUsername';
   static const String enterPassword = 'enterPassword';
   static const String guestSignIn = 'guestSignIn';
+  static const String changetheme = 'changetheme';
+  static const String search = 'search';
 }

@@ -26,5 +26,7 @@
     "sessionDenied": "Phiên đã hết hạn",
     "enterTMDbUsername": "Nhập tên đăng nhập TMDb",
     "enterPassword": "Nhập mật khẩu",
-    "guestSignIn": "Đăng nhập với Tài khoản Khách"
+    "guestSignIn": "Đăng nhập với Tài khoản Khách",
+    "changetheme": "Đổi giao diện",
+    "search": "Tìm kiếm"
 }

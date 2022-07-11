@@ -45,6 +45,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   salomon_bottom_bar: ^3.3.1
+  animated_text_kit: ^4.2.1
+  flutter_fortune_wheel: ^1.2.0
+  dio: ^4.0.1
 
 dev_dependencies:
   hive_generator: ^1.1.0
