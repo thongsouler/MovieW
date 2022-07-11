@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "416075279330",
+    "project_id": "tlu-movieapp",
+    "storage_bucket": "tlu-movieapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416075279330:android:67d924fedbcd62dd40a7bb",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "416075279330-miao613ersr37j4pt8i6htj6emaebmm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPbYt1-l30giNaokAZ0cTBT8NtbWVp_c8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "416075279330-miao613ersr37j4pt8i6htj6emaebmm9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

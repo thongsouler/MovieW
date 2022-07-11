@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:firebase_analytics/firebase_analytics.dart';
 import '../../../common/constants/route_constants.dart';
 import '../../../common/constants/size_constants.dart';
 import '../../../common/constants/translation_constants.dart';
@@ -19,6 +19,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   late TextEditingController? _userNameController, _passwordController;
   bool enableSignIn = false;
 
@@ -110,8 +111,10 @@ class _LoginFormState extends State<LoginForm> {
               isEnabled: enableSignIn,
             ),
             Button(
-              onPressed: () =>
-                  BlocProvider.of<LoginCubit>(context).initiateGuestLogin(),
+              onPressed: () async {
+                BlocProvider.of<LoginCubit>(context).initiateGuestLogin();
+                await analytics.logEvent(name: 'Login guest', parameters: null);
+              },
               text: TranslationConstants.guestSignIn,
             ),
           ],

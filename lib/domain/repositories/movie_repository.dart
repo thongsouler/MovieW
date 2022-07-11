@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:movieapp/domain/usecases/get_top_rated.dart';
 
 import '../entities/app_error.dart';
 import '../entities/cast_entity.dart';
@@ -11,6 +12,8 @@ abstract class MovieRepository {
   Future<Either<AppError, List<MovieEntity>>> getPopular();
   Future<Either<AppError, List<MovieEntity>>> getPlayingNow();
   Future<Either<AppError, List<MovieEntity>>> getComingSoon();
+    Future<Either<AppError, List<MovieEntity>>> getTopRated();
+
   Future<Either<AppError, MovieDetailEntity>> getMovieDetail(int id);
   Future<Either<AppError, List<CastEntity>>> getCastCrew(int id);
   Future<Either<AppError, List<VideoEntity>>> getVideos(int id);

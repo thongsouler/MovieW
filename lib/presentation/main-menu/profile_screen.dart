@@ -18,7 +18,12 @@ import '../widgets/app_dialog.dart';
 import '../widgets/logo.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   final colorizeColors = [
     Colors.purple,
     Colors.blue,
@@ -32,118 +37,125 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: Sizes.dimen_8.h,
-                    bottom: Sizes.dimen_18.h,
-                    left: Sizes.dimen_8.w,
-                    right: Sizes.dimen_8.w,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/pngs/menu-logo.png',
-                        height: Sizes.dimen_60,
+    return Scaffold(
+      body: SafeArea(
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: Sizes.dimen_8.h,
+                        bottom: Sizes.dimen_8.h,
+                        left: Sizes.dimen_8.w,
+                        right: Sizes.dimen_8.w,
                       ),
-                      SizedBox(
-                        width: 10,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/pngs/menu-logo.png',
+                            height: Sizes.dimen_20.h,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Logo(
+                            height: Sizes.dimen_10.h,
+                          ),
+                        ],
                       ),
-                      Logo(
-                        height: Sizes.dimen_20.h,
-                      ),
-                    ],
-                  ),
-                ),
-                customText(),
-                SizedBox(
-                  height: 20,
-                ),
-                divider(),
-                NavigationListItem(
-                  title: TranslationConstants.favoriteMovies.t(context),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(RouteList.favorite);
-                  },
-                ),
-                NavigationExpandedListItem(
-                  title: TranslationConstants.language.t(context),
-                  children: Languages.languages.map((e) => e.value).toList(),
-                  onPressed: (index) => _onLanguageSelected(index, context),
-                ),
-                NavigationListItem(
-                  title: TranslationConstants.feedback.t(context),
-                  onPressed: () {
-                    // Navigator.of(context).pop();
-                    Wiredash.of(context)?.show();
-                  },
-                ),
-                NavigationListItem(
-                  title: TranslationConstants.about.t(context),
-                  onPressed: () {
-                    // Navigator.of(context).pop();
-                    _showDialog(context);
-                  },
-                ),
-                BlocBuilder<ThemeCubit, Themes>(builder: (context, theme) {
-                  return Row(
-                    children: [
-                      Expanded(
-                        flex: 5,
-                        child: NavigationListItem(
-                          title: TranslationConstants.changetheme.t(context),
-                          onPressed: () {},
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 10),
-                          child: IconButton(
-                            onPressed: () =>
-                                context.read<ThemeCubit>().toggleTheme(),
-                            icon: Icon(
-                              theme == Themes.dark
-                                  ? Icons.brightness_4_sharp
-                                  : Icons.brightness_7_sharp,
-                              color: context.read<ThemeCubit>().state ==
-                                      Themes.dark
-                                  ? Colors.white
-                                  : AppColor.vulcan,
-                              size: Sizes.dimen_32.w,
+                    ),
+                    customText(),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    divider(),
+                    NavigationListItem(
+                      title: TranslationConstants.favoriteMovies.t(context),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(RouteList.favorite);
+                      },
+                    ),
+                    NavigationExpandedListItem(
+                      title: TranslationConstants.language.t(context),
+                      children:
+                          Languages.languages.map((e) => e.value).toList(),
+                      onPressed: (index) => _onLanguageSelected(index, context),
+                    ),
+                    NavigationListItem(
+                      title: TranslationConstants.feedback.t(context),
+                      onPressed: () {
+                        // Navigator.of(context).pop();
+                        Wiredash.of(context)?.show();
+                      },
+                    ),
+                    NavigationListItem(
+                      title: TranslationConstants.about.t(context),
+                      onPressed: () {
+                        // Navigator.of(context).pop();
+                        _showDialog(context);
+                      },
+                    ),
+                    BlocBuilder<ThemeCubit, Themes>(builder: (context, theme) {
+                      return Row(
+                        children: [
+                          Expanded(
+                            flex: 5,
+                            child: NavigationListItem(
+                              title:
+                                  TranslationConstants.changetheme.t(context),
+                              onPressed: () {},
                             ),
                           ),
-                        ),
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 10),
+                              child: IconButton(
+                                onPressed: () =>
+                                    context.read<ThemeCubit>().toggleTheme(),
+                                icon: Icon(
+                                  theme == Themes.dark
+                                      ? Icons.brightness_4_sharp
+                                      : Icons.brightness_7_sharp,
+                                  color: context.read<ThemeCubit>().state ==
+                                          Themes.dark
+                                      ? Colors.white
+                                      : AppColor.vulcan,
+                                  size: Sizes.dimen_32.w,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }),
+                    BlocListener<LoginCubit, LoginState>(
+                      listenWhen: (previous, current) =>
+                          current is LogoutSuccess,
+                      listener: (context, state) {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            RouteList.initial, (route) => false);
+                      },
+                      child: NavigationListItem(
+                        title: TranslationConstants.logout.t(context),
+                        onPressed: () {
+                          BlocProvider.of<LoginCubit>(context).logout();
+                        },
                       ),
-                    ],
-                  );
-                }),
-                BlocListener<LoginCubit, LoginState>(
-                  listenWhen: (previous, current) => current is LogoutSuccess,
-                  listener: (context, state) {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        RouteList.initial, (route) => false);
-                  },
-                  child: NavigationListItem(
-                    title: TranslationConstants.logout.t(context),
-                    onPressed: () {
-                      BlocProvider.of<LoginCubit>(context).logout();
-                    },
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-        );
-      },
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 

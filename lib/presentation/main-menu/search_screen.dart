@@ -5,7 +5,7 @@ import 'package:movieapp/common/constants/translation_constants.dart';
 import 'package:movieapp/presentation/blocs/movie_tabbed/movie_tabbed_cubit.dart';
 import 'package:movieapp/presentation/blocs/search_movie/search_movie_cubit.dart';
 import 'package:movieapp/presentation/blocs/theme/theme_cubit.dart';
-import 'package:movieapp/presentation/journeys/home/main_home_screen.dart';
+import 'package:movieapp/presentation/main-menu/main_home_screen.dart';
 import 'package:movieapp/presentation/journeys/home/movie_tabbed/movie_list_view_builder.dart';
 import 'package:movieapp/presentation/journeys/home/movie_tabbed/movie_tabbed_constants.dart';
 import 'package:movieapp/presentation/journeys/search_movie/custom_search_movie_delegate.dart';

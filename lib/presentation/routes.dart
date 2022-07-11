@@ -4,7 +4,7 @@ import 'package:movieapp/presentation/journeys/watch_video/watch_video_arguments
 
 import '../common/constants/route_constants.dart';
 import 'journeys/favorite/favorite_screen.dart';
-import 'journeys/home/main_home_screen.dart';
+import 'main-menu/main_home_screen.dart';
 import 'journeys/login/login_screen.dart';
 import 'journeys/movie_detail/movie_detail_screen.dart';
 import 'journeys/watch_video/watch_video_screen.dart';

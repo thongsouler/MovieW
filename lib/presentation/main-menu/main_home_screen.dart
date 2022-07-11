@@ -14,19 +14,21 @@ import 'package:movieapp/presentation/journeys/search_movie/search_movie_card.da
 import 'package:movieapp/presentation/main-menu/category_screen.dart';
 import 'package:movieapp/presentation/main-menu/profile_screen.dart';
 import 'package:movieapp/presentation/main-menu/search_screen.dart';
+import 'package:movieapp/presentation/widgets/separator.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../../../di/get_it.dart';
-import '../../blocs/movie_backdrop/movie_backdrop_cubit.dart';
-import '../../blocs/movie_carousel/movie_carousel_cubit.dart';
-import '../../blocs/movie_tabbed/movie_tabbed_cubit.dart';
-import '../../blocs/search_movie/search_movie_cubit.dart';
-import '../../widgets/app_error_widget.dart';
-import '../drawer/navigation_drawer.dart';
-import 'movie_carousel/movie_carousel_widget.dart';
-import 'movie_tabbed/movie_tabbed_widget.dart';
-import '../../../common/extensions/size_extensions.dart';
-import '../../themes/theme_text.dart';
+import '../../di/get_it.dart';
+import '../blocs/movie_backdrop/movie_backdrop_cubit.dart';
+import '../blocs/movie_carousel/movie_carousel_cubit.dart';
+import '../blocs/movie_tabbed/movie_tabbed_cubit.dart';
+import '../blocs/search_movie/search_movie_cubit.dart';
+import '../widgets/app_error_widget.dart';
+import '../journeys/drawer/navigation_drawer.dart';
+import '../journeys/home/movie_carousel/movie_carousel_widget.dart';
+import '../journeys/home/movie_tabbed/movie_tabbed_widget.dart';
+import '../../common/extensions/size_extensions.dart';
+import '../../common/extensions/string_extensions.dart';
+import '../themes/theme_text.dart';
 
 class MainHomeScreen extends StatefulWidget {
   @override
@@ -124,8 +126,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         (BuildContext context, BoxConstraints constraints) {
                       return SingleChildScrollView(
                         child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                              minHeight: constraints.maxHeight - 150),
+                          constraints:
+                              BoxConstraints(minHeight: constraints.maxHeight),
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -154,7 +156,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                     height: constraints.maxHeight * 0.4,
                                     child: MovieTabbedWidget()),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 12),
+                                  padding: EdgeInsets.zero,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -163,14 +165,17 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                         height: 12,
                                       ),
                                       // BuildWidgetCategory(),
-                                      Text(
-                                        'Trending persons on this week'
-                                            .toUpperCase(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .royalBlueSubtitle1,
-                                        textAlign: TextAlign.center,
+                                      Container(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          'Trending persons on this week'
+                                              .toUpperCase(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .royalBlueSubtitle1,
+                                        ),
                                       ),
+                                      Center(child: Separator()),
                                       SizedBox(
                                         height: 12,
                                       ),
@@ -252,7 +257,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
 
   Widget buildTrendingPersonRow(List<Person> personList) {
     return Container(
-      height: 120,
+      height: 170,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: personList.length,
@@ -267,21 +272,21 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               children: <Widget>[
                 Card(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
+                    borderRadius: BorderRadius.circular(Sizes.dimen_16.w),
                   ),
                   elevation: 3,
                   child: ClipRRect(
                     child: CachedNetworkImage(
-                      imageUrl:
-                          'https://image.tmdb.org/t/p/w200${person.profilePath}',
+                      imageUrl: person.profilePath != ''
+                          ? 'https://image.tmdb.org/t/p/w200${person.profilePath}'
+                          : 'https://cdn-icons-png.flaticon.com/128/2748/2748583.png',
                       imageBuilder: (context, imageProvider) {
                         return Container(
-                          width: 80,
-                          height: 80,
+                          width: 100,
+                          height: 120,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(100),
-                            ),
+                            borderRadius:
+                                BorderRadius.circular(Sizes.dimen_16.w),
                             image: DecorationImage(
                               image: imageProvider,
                               fit: BoxFit.cover,
@@ -290,8 +295,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         );
                       },
                       placeholder: (context, url) => Container(
-                        width: 80,
-                        height: 80,
+                        width: 100,
+                        height: 120,
                         child: Center(
                           child: Platform.isAndroid
                               ? CircularProgressIndicator()
@@ -299,11 +304,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                         ),
                       ),
                       errorWidget: (context, url, error) => Container(
-                        width: 80,
-                        height: 80,
+                        width: 100,
+                        height: 120,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: AssetImage('assets/pngs/img_not_found.jpg'),
+                            image: AssetImage('assets/pngs/no-pictures.png'),
                           ),
                         ),
                       ),
@@ -313,12 +318,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                 Container(
                   child: Center(
                     child: Text(
-                      person.name.toUpperCase(),
-                      style: TextStyle(
-                        color: Colors.black45,
-                        fontSize: 8,
-                        fontFamily: 'muli',
-                      ),
+                      person.name.intelliTrim(),
+                      style: Theme.of(context).textTheme.bodyText2,
                     ),
                   ),
                 ),
@@ -327,9 +328,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                     child: Text(
                       person.knowForDepartment.toUpperCase(),
                       style: TextStyle(
-                        color: Colors.black45,
-                        fontSize: 8,
-                        fontFamily: 'muli',
+                        color: Colors.blueAccent,
+                        fontSize: 10,
                       ),
                     ),
                   ),

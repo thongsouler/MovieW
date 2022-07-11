@@ -48,6 +48,9 @@ dependencies:
   animated_text_kit: ^4.2.1
   flutter_fortune_wheel: ^1.2.0
   dio: ^4.0.1
+  cloud_firestore: ^3.1.9
+  firebase_core: ^1.12.0
+  firebase_analytics: ^9.1.1
 
 dev_dependencies:
   hive_generator: ^1.1.0
@@ -58,6 +61,18 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.9.0
+dependency_overrides:
+  firebase_messaging_platform_interface: 3.1.6
+  firebase_crashlytics_platform_interface: 3.1.13
+  cloud_firestore_platform_interface: 5.4.13
+  firebase_auth_platform_interface: 6.1.11
+  firebase_storage_platform_interface: 4.0.14
+  cloud_functions_platform_interface: 5.0.21
+  firebase_analytics_platform_interface: 3.0.5
+  firebase_remote_config_platform_interface: 1.0.5
+  firebase_dynamic_links_platform_interface: 0.2.0+5
+  firebase_performance_platform_interface: 0.1.0+5
+  firebase_app_installations_platform_interface: 0.1.0+6
 
 flutter_icons:
   android: "launcher_icon"
