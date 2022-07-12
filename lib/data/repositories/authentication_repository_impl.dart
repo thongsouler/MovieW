@@ -1,7 +1,5 @@
 import 'dart:io';
-
 import 'package:dartz/dartz.dart';
-
 import '../../domain/entities/app_error.dart';
 import '../../domain/repositories/authentication_repository.dart';
 import '../core/unathorised_exception.dart';
@@ -42,6 +40,11 @@ class AuthenticationRepositoryImpl extends AuthenticationRepository {
           await _authenticationRemoteDataSource.validateWithLogin(body);
       final sessionId = await _authenticationRemoteDataSource
           .createSession(validateWithLoginToken.toJson());
+      await _authenticationLocalDataSource.saveSessionId(sessionId.toString());
+      await _authenticationLocalDataSource.saveId(sessionId.toString());
+
+      print('*****Session ID: ' + sessionId.toString());
+
       if (sessionId != null) {
         await _authenticationLocalDataSource.saveSessionId(sessionId);
         return Right(true);

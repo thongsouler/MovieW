@@ -77,6 +77,7 @@ class _MovieDetailAppBarState extends State<MovieDetailAppBar> {
                   }
                 },
               ),
+              //Thêm vào WatchList
               BlocBuilder<FavoriteCubit, FavoriteState>(
                 builder: (context, state) {
                   if (state is IsFavoriteMovie) {

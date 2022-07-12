@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:movieapp/data/data_sources/account_remote_source.dart';
 import 'package:movieapp/presentation/journeys/drawer/navigation_expanded_list_item.dart';
 import 'package:movieapp/presentation/journeys/drawer/navigation_list_item.dart';
 import 'package:movieapp/presentation/widgets/separator.dart';
@@ -24,6 +26,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final accountApi = AccountRemoteDataSource();
+  String name = '';
+  String sessionId = '';
   final colorizeColors = [
     Colors.purple,
     Colors.blue,
@@ -34,6 +39,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final colorizeTextStyle = TextStyle(
     fontSize: 20.0,
   );
+
+  @override
+  void initState() {
+    getSessionId();
+    super.initState();
+  }
+
+  void getSessionId() async {
+    var box = await Hive.openBox('authenticationBox');
+    sessionId = await box.get('session_id') ?? "";
+    print("********Get session id: " + sessionId);
+    if (sessionId != "") {
+      await accountApi.getAccountInfo(sessionId).then((value) {
+        setState(() {
+          name = value.username ?? "";
+          print('*********Name: ' + name);
+        });
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -185,11 +210,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       alignment: Alignment.center,
       child: AnimatedTextKit(
         animatedTexts: [
-          ColorizeAnimatedText(
-            'Hello, have a good day !',
-            textStyle: colorizeTextStyle,
-            colors: colorizeColors,
-          ),
+          TypewriterAnimatedText('Hello $name, have a good day !'),
         ],
         isRepeatingAnimation: true,
       ),

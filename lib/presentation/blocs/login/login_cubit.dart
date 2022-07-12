@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:movieapp/data/data_sources/authentication_local_data_source.dart';
 
 import '../../../common/constants/translation_constants.dart';
 import '../../../domain/entities/app_error.dart';
@@ -39,7 +41,12 @@ class LoginCubit extends Cubit<LoginState> {
         print(message);
         return LoginError(message);
       },
-      (r) => LoginSuccess(),
+      (r) {
+        print('Login success');
+        saveId();
+
+        return LoginSuccess();
+      },
     ));
     loadingCubit.hide();
   }
@@ -51,6 +58,12 @@ class LoginCubit extends Cubit<LoginState> {
   void logout() async {
     await logoutUser(NoParams());
     emit(LogoutSuccess());
+  }
+
+  void saveId() async {
+    final authenticationBox = await Hive.openBox('authenticationBox');
+    await authenticationBox.put('id', id);
+    print("Save Id");
   }
 
   String getErrorMessage(AppErrorType appErrorType) {
