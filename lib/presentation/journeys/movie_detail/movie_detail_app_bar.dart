@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import '../../blocs/theme/theme_cubit.dart';
 import '../../themes/theme_color.dart';
 
@@ -23,9 +24,19 @@ class MovieDetailAppBar extends StatefulWidget {
 }
 
 class _MovieDetailAppBarState extends State<MovieDetailAppBar> {
+  String username = "";
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  CollectionReference bookmark_movies =
+  CollectionReference bookmarkMovies =
       FirebaseFirestore.instance.collection('bookmark_movies');
+
+  void getUsername() async {
+    final authenticationBox = await Hive.openBox('authenticationBox');
+    setState(() {
+      username = authenticationBox.get('id');
+      print(username);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -83,6 +94,7 @@ class _MovieDetailAppBarState extends State<MovieDetailAppBar> {
                   if (state is IsFavoriteMovie) {
                     return GestureDetector(
                       onTap: () {
+                        getUsername();
                         print('Click bookmark button');
                         addBookmark();
                       },
@@ -116,8 +128,9 @@ class _MovieDetailAppBarState extends State<MovieDetailAppBar> {
 
   Future<void> addBookmark() {
     // Call the user's CollectionReference to add a new user
-    return bookmark_movies
-        .add({
+    return bookmarkMovies
+        .doc(username)
+        .set({
           'movie-id': widget.movieDetailEntity.id, // John Doe
           // 42
         })

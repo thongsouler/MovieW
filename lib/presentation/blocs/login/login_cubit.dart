@@ -43,7 +43,7 @@ class LoginCubit extends Cubit<LoginState> {
       },
       (r) {
         print('Login success');
-        saveId();
+        saveId(username);
 
         return LoginSuccess();
       },
@@ -60,7 +60,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LogoutSuccess());
   }
 
-  void saveId() async {
+  void saveId(String id) async {
     final authenticationBox = await Hive.openBox('authenticationBox');
     await authenticationBox.put('id', id);
     print("Save Id");

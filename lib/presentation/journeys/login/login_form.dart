@@ -113,7 +113,7 @@ class _LoginFormState extends State<LoginForm> {
             Button(
               onPressed: () async {
                 BlocProvider.of<LoginCubit>(context).initiateGuestLogin();
-                await analytics.logEvent(name: 'Login guest', parameters: null);
+                await analytics.logEvent(name: 'login_guest', parameters: null);
               },
               text: TranslationConstants.guestSignIn,
             ),
