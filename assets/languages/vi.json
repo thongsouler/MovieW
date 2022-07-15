@@ -28,5 +28,11 @@
     "enterPassword": "Nhập mật khẩu",
     "guestSignIn": "Đăng nhập với Tài khoản Khách",
     "changetheme": "Đổi giao diện",
-    "search": "Tìm kiếm"
+    "search": "Tìm kiếm",
+    "buyticket": "Mua vé ngay",
+    "toprated": "Xếp Hạng Cao Nhất",
+    "topperson": "Diễn viên thịnh hành trong tuần",
+    "genres": "Thể loại",
+    "checkout": "Check out",
+    "success": "Congratulations, you have successful checked out"
 }

@@ -28,5 +28,12 @@
     "enterPassword": "Enter password here...",
     "guestSignIn": "Guest Sign In",
     "changetheme": "Change theme",
-    "search": "Search"
+    "search": "Search",
+    "buyticket": "Buy Ticket",
+    "toprated": "Top Rated",
+    "topperson": "Top Trending Person On This Week",
+    "genres": "Genres",
+    "checkout": "Thanh toán",
+    "success": "Chúc mừng bạn đã thanh toán thành công"
+
 }

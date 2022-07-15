@@ -88,7 +88,7 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("GENRES",
+              child: Text(TranslationConstants.genres.t(context).toUpperCase(),
                   style: Theme.of(context).textTheme.royalBlueSubtitle1),
             ),
             BlocBuilder<GenreBloc, GenreState>(

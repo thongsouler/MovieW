@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movieapp/presentation/journeys/buy_ticket/buy_ticket.dart';
+import 'package:movieapp/presentation/widgets/button.dart';
 
 import '../../../common/constants/size_constants.dart';
 import '../../../common/constants/translation_constants.dart';
@@ -84,6 +86,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         style: Theme.of(context).textTheme.bodyText2,
                       ),
                     ),
+                    VideosWidget(videosCubit: _videosCubit),
                     Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: Sizes.dimen_16.w),
@@ -93,7 +96,20 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       ),
                     ),
                     CastWidget(),
-                    VideosWidget(videosCubit: _videosCubit),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30.0, right: 30),
+                      child: Button(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => BuyTicket(
+                                      movieDetail.title,
+                                      movieDetail.posterPath)));
+                        },
+                        text: TranslationConstants.buyticket,
+                      ),
+                    )
                   ],
                 ),
               );

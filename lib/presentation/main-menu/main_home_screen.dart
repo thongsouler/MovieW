@@ -5,16 +5,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapp/common/constants/size_constants.dart';
+import 'package:movieapp/common/constants/translation_constants.dart';
 import 'package:movieapp/data/models/person.dart';
 import 'package:movieapp/presentation/blocs/personbloc/person_bloc.dart';
 import 'package:movieapp/presentation/blocs/personbloc/person_event.dart';
 import 'package:movieapp/presentation/blocs/personbloc/person_state.dart';
 import 'package:movieapp/presentation/journeys/favorite/favorite_screen.dart';
-import 'package:movieapp/presentation/journeys/search_movie/search_movie_card.dart';
-import 'package:movieapp/presentation/journeys/select_cinema/check_out_page.dart';
 import 'package:movieapp/presentation/main-menu/category_screen.dart';
 import 'package:movieapp/presentation/main-menu/profile_screen.dart';
-import 'package:movieapp/presentation/main-menu/search_screen.dart';
 import 'package:movieapp/presentation/widgets/separator.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -169,7 +167,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                       Container(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          'Trending persons on this week'
+                                          TranslationConstants.topperson
+                                              .t(context)
                                               .toUpperCase(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -207,7 +206,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                Text("WOWWWW"),
                               ]),
                         ),
                       );
@@ -233,8 +231,8 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                 //   ],
                 // );
                 case 1:
-                  // return FavoriteScreen();
-                  return CheckOutPage();
+                  return FavoriteScreen();
+                // return CheckOutPage();
                 case 2:
                   // return SearchScreen();
                   return BuildWidgetCategory();

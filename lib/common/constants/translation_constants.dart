@@ -31,4 +31,10 @@ class TranslationConstants {
   static const String guestSignIn = 'guestSignIn';
   static const String changetheme = 'changetheme';
   static const String search = 'search';
+  static const String buyticket = 'buyticket';
+  static const String toprated = 'toprated';
+  static const String topperson = 'topperson';
+  static const String genres = 'genres';
+  static const String checkout = 'checkout';
+  static const String success = 'success';
 }
