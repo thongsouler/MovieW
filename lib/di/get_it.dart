@@ -1,5 +1,10 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
+import 'package:movieapp/domain/usecases/check_if_movie_watchlist.dart';
+import 'package:movieapp/domain/usecases/delete_watchlist_movie.dart';
+import 'package:movieapp/domain/usecases/get_watchlist_movies.dart';
+import 'package:movieapp/domain/usecases/save_movie_watchlist.dart';
+import 'package:movieapp/presentation/blocs/watchlist/watchlist_cubit.dart';
 import '../domain/usecases/get_preferred_theme.dart';
 import '../domain/usecases/update_theme.dart';
 import '../presentation/blocs/theme/theme_cubit.dart';
@@ -99,6 +104,18 @@ Future init() async {
   getItInstance.registerLazySingleton<CheckIfFavoriteMovie>(
       () => CheckIfFavoriteMovie(getItInstance()));
 
+  getItInstance.registerLazySingleton<SaveMovieWatchlist>(
+      () => SaveMovieWatchlist(getItInstance()));
+
+  getItInstance.registerLazySingleton<GetWatchlistMovies>(
+      () => GetWatchlistMovies(getItInstance()));
+
+  getItInstance.registerLazySingleton<DeleteWatchlistMovie>(
+      () => DeleteWatchlistMovie(getItInstance()));
+
+  getItInstance.registerLazySingleton<CheckIfWatchlistMovie>(
+      () => CheckIfWatchlistMovie(getItInstance()));
+
   getItInstance.registerLazySingleton<UpdateLanguage>(
       () => UpdateLanguage(getItInstance()));
 
@@ -150,6 +167,7 @@ Future init() async {
 
   getItInstance.registerFactory(
     () => MovieDetailCubit(
+      watchlistCubit: getItInstance(),
       loadingCubit: getItInstance(),
       getMovieDetail: getItInstance(),
       castBloc: getItInstance(),
@@ -187,6 +205,13 @@ Future init() async {
         checkIfFavoriteMovie: getItInstance(),
         deleteFavoriteMovie: getItInstance(),
         getFavoriteMovies: getItInstance(),
+      ));
+
+  getItInstance.registerFactory(() => WatchlistCubit(
+        saveMovieWatchlist: getItInstance(),
+        checkIfWatchlistMovie: getItInstance(),
+        deleteWatchlistMovie: getItInstance(),
+        getWatchlistMovies: getItInstance(),
       ));
 
   getItInstance.registerFactory(() => LoginCubit(

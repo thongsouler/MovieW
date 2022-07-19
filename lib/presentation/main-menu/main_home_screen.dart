@@ -12,6 +12,7 @@ import 'package:movieapp/presentation/blocs/personbloc/person_event.dart';
 import 'package:movieapp/presentation/blocs/personbloc/person_state.dart';
 import 'package:movieapp/presentation/journeys/favorite/favorite_screen.dart';
 import 'package:movieapp/presentation/main-menu/category_screen.dart';
+import 'package:movieapp/presentation/main-menu/my_list_screen.dart';
 import 'package:movieapp/presentation/main-menu/profile_screen.dart';
 import 'package:movieapp/presentation/widgets/separator.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -231,7 +232,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                 //   ],
                 // );
                 case 1:
-                  return FavoriteScreen();
+                  return MyListScreen();
                 // return CheckOutPage();
                 case 2:
                   // return SearchScreen();

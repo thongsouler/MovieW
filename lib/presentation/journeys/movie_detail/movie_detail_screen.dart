@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movieapp/presentation/blocs/watchlist/watchlist_cubit.dart';
 import 'package:movieapp/presentation/journeys/buy_ticket/buy_ticket.dart';
 import 'package:movieapp/presentation/widgets/button.dart';
-
 import '../../../common/constants/size_constants.dart';
 import '../../../common/constants/translation_constants.dart';
 import '../../../common/extensions/size_extensions.dart';
@@ -34,6 +34,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   late CastCubit _castCubit;
   late VideosCubit _videosCubit;
   late FavoriteCubit _favoriteCubit;
+  late WatchlistCubit _watchlistCubit;
 
   @override
   void initState() {
@@ -42,6 +43,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     _castCubit = _movieDetailCubit.castBloc;
     _videosCubit = _movieDetailCubit.videosCubit;
     _favoriteCubit = _movieDetailCubit.favoriteCubit;
+    _watchlistCubit = _movieDetailCubit.watchlistCubit;
     _movieDetailCubit.loadMovieDetail(widget.movieDetailArguments.movieId);
   }
 
@@ -51,6 +53,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     _castCubit.close();
     _videosCubit.close();
     _favoriteCubit.close();
+    _watchlistCubit.close();
     super.dispose();
   }
 
@@ -63,6 +66,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           BlocProvider.value(value: _castCubit),
           BlocProvider.value(value: _videosCubit),
           BlocProvider.value(value: _favoriteCubit),
+          BlocProvider.value(value: _watchlistCubit),
         ],
         child: BlocBuilder<MovieDetailCubit, MovieDetailState>(
           builder: (context, state) {
@@ -100,12 +104,19 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       padding: const EdgeInsets.only(left: 30.0, right: 30),
                       child: Button(
                         onPressed: () {
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => BuyTicket(
+                          //             movieDetail.title,
+                          //             movieDetail.posterPath)));
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => BuyTicket(
-                                      movieDetail.title,
-                                      movieDetail.posterPath)));
+                                        movieDetail.title,
+                                        movieDetail.posterPath,
+                                      )));
                         },
                         text: TranslationConstants.buyticket,
                       ),

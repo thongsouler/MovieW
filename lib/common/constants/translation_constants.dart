@@ -37,4 +37,10 @@ class TranslationConstants {
   static const String genres = 'genres';
   static const String checkout = 'checkout';
   static const String success = 'success';
+    static const String watchlist = 'watchlist';
+  static const String mylist = 'mylist';
+  static const String watchlist1 = 'watchlist1';
+  static const String favorite1 = 'favorite1';
+  static const String watchlist2 = 'watchlist2';
+  static const String favorite2 = 'favorite2';
 }

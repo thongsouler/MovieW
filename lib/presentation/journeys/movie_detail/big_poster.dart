@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movieapp/presentation/widgets/star_rating.dart';
 
 import '../../../common/constants/size_constants.dart';
 import '../../../common/extensions/num_extensions.dart';
@@ -42,19 +43,24 @@ class BigPoster extends StatelessWidget {
           left: 0,
           right: 0,
           bottom: 0,
-          child: ListTile(
-            title: Text(
-              movie.title,
-              style: Theme.of(context).textTheme.headline5,
-            ),
-            subtitle: Text(
-              movie.releaseDate ?? '',
-              style: Theme.of(context).textTheme.greySubtitle1,
-            ),
-            trailing: Text(
-              movie.voteAverage.convertToPercentageString(),
-              style: Theme.of(context).textTheme.violetHeadline6,
-            ),
+          child: Column(
+            children: [
+              ListTile(
+                title: Text(
+                  movie.title,
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+                subtitle: Text(
+                  movie.releaseDate ?? '',
+                  style: Theme.of(context).textTheme.greySubtitle1,
+                ),
+                trailing: Text(
+                  movie.voteAverage.convertToPercentageString(),
+                  style: Theme.of(context).textTheme.violetHeadline6,
+                ),
+              ),
+              StarRating(movie.voteAverage?.toDouble() ?? 0.0)
+            ],
           ),
         ),
         Positioned(

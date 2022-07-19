@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:movieapp/presentation/journeys/select_cinema/components/search_bar.dart';
 import '../const.dart';
+import 'search_bar.dart';
 
 class MovieAppBar extends StatelessWidget {
   const MovieAppBar({

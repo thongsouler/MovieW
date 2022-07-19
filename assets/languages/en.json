@@ -33,7 +33,14 @@
     "toprated": "Top Rated",
     "topperson": "Top Trending Person On This Week",
     "genres": "Genres",
-    "checkout": "Thanh toán",
-    "success": "Chúc mừng bạn đã thanh toán thành công"
+    "checkout": "Check out",
+    "success": "Congratulations, you have successful checked out",
+    "watchlist": "Watchlist Movies",
+    "mylist": "My List",
+    "watchlist1": "My Watchlist Movies",
+    "favorite1": "My Favorite Movies",
+    "watchlist2": "Should try to watch all",
+    "favorite2": "Yeah, i love them !"
+    
 
 }

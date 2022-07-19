@@ -143,27 +143,17 @@ class _BuyTicketState extends State<BuyTicket> {
                       children: <Widget>[
                         ShowTime(
                           time: '11:00',
-                          price: 5,
+                          price: 45000,
                           isActive: false,
                         ),
                         ShowTime(
                           time: '12:30',
-                          price: 10,
+                          price: 45000,
                           isActive: true,
                         ),
                         ShowTime(
                           time: '12:30',
-                          price: 10,
-                          isActive: false,
-                        ),
-                        ShowTime(
-                          time: '12:30',
-                          price: 10,
-                          isActive: false,
-                        ),
-                        ShowTime(
-                          time: '12:30',
-                          price: 10,
+                          price: 45000,
                           isActive: false,
                         ),
                       ],
@@ -384,11 +374,11 @@ class _BuyTicketState extends State<BuyTicket> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => CheckOutPage(
-                                        title: widget.title,
-                                        path: widget.path,
-                                        total: total,
-                                        date: '15/07/2022',
-                                      )));
+                                            title: widget.title,
+                                            path: widget.path,
+                                            total: total,
+                                            date: '15/07/2022',
+                                          )));
                             },
                             child: Text('Pay',
                                 style: TextStyle(

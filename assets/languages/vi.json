@@ -33,6 +33,12 @@
     "toprated": "Xếp Hạng Cao Nhất",
     "topperson": "Diễn viên thịnh hành trong tuần",
     "genres": "Thể loại",
-    "checkout": "Check out",
-    "success": "Congratulations, you have successful checked out"
+    "checkout": "Thanh toán",
+    "success": "Chúc mừng bạn đã thanh toán thành công",
+    "watchlist": "Danh sách phim theo dõi",
+    "mylist": "Danh sách của tôi",
+    "watchlist1": "Danh sách phim theo dõi của tôi",
+    "favorite1": "Danh sách phim yêu thích của tôi",
+    "watchlist2": "Tuyệt, cố gắng xem hết nhé",
+    "favorite2": "Yeah, tôi yêu những bộ phim này !"
 }

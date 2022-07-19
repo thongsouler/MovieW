@@ -170,4 +170,49 @@ class MovieRepositoryImpl extends MovieRepository {
       return Left(AppError(AppErrorType.database));
     }
   }
+
+  //Watchlist
+  @override
+  Future<Either<AppError, bool>> checkIfMovieWatchlist(int movieId) async {
+    try {
+      final response = await localDataSource.checkIfMovieWatchlist(movieId);
+      return Right(response);
+    } on Exception {
+      return Left(AppError(AppErrorType.database));
+    }
+  }
+
+  @override
+  Future<Either<AppError, void>> deleteWatchlistMovie(int movieId) async {
+    try {
+      final response = await localDataSource.deleteMovieWatchlist(movieId);
+      return Right(response);
+    } on Exception {
+      return Left(AppError(AppErrorType.database));
+    }
+  }
+
+  @override
+  Future<Either<AppError, List<MovieEntity>>> getWatchlistMovies() async {
+    try {
+      final response = await localDataSource.getMoviesWatchlist();
+      return Right(response);
+    } on Exception {
+      return Left(AppError(AppErrorType.database));
+    }
+  }
+
+  @override
+  Future<Either<AppError, void>> saveMovieWatchlist(
+      MovieEntity movieEntity) async {
+    try {
+      final table = MovieTable.fromMovieEntity(movieEntity);
+      print(table);
+      final response = await localDataSource
+          .saveMovieWatchlist(MovieTable.fromMovieEntity(movieEntity));
+      return Right(response);
+    } on Exception {
+      return Left(AppError(AppErrorType.database));
+    }
+  }
 }

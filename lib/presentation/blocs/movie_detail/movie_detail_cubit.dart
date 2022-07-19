@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movieapp/presentation/blocs/watchlist/watchlist_cubit.dart';
 
 import '../../../domain/entities/app_error.dart';
 import '../../../domain/entities/movie_detail_entity.dart';
@@ -19,12 +20,14 @@ class MovieDetailCubit extends Cubit<MovieDetailState> {
   final VideosCubit videosCubit;
   final FavoriteCubit favoriteCubit;
   final LoadingCubit loadingCubit;
+  final WatchlistCubit watchlistCubit;
 
   MovieDetailCubit({
     required this.getMovieDetail,
     required this.castBloc,
     required this.videosCubit,
     required this.favoriteCubit,
+    required this.watchlistCubit,
     required this.loadingCubit,
   }) : super(MovieDetailInitial());
 
@@ -41,6 +44,7 @@ class MovieDetailCubit extends Cubit<MovieDetailState> {
     ));
 
     favoriteCubit.checkIfMovieFavorite(movieId);
+    watchlistCubit.checkIfMovieWatchlist(movieId);
     castBloc.loadCast(movieId);
     videosCubit.loadVideos(movieId);
     loadingCubit.hide();
