@@ -8,6 +8,8 @@ class MovieDetailEntity extends Equatable {
   final num? voteAverage;
   final String? backdropPath;
   final String posterPath;
+  final int? budget;
+  final int? revenue;
 
   const MovieDetailEntity({
     required this.id,
@@ -17,6 +19,8 @@ class MovieDetailEntity extends Equatable {
     required this.voteAverage,
     required this.backdropPath,
     required this.posterPath,
+    this.budget,
+    this.revenue,
   });
 
   @override

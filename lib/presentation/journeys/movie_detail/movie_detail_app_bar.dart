@@ -42,6 +42,7 @@ class _MovieDetailAppBarState extends State<MovieDetailAppBar> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GestureDetector(

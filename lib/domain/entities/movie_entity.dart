@@ -10,6 +10,8 @@ class MovieEntity extends Equatable {
   final num? voteAverage;
   final String? releaseDate;
   final String? overview;
+  final int? budget;
+  final int? revenue;
 
   const MovieEntity({
     required this.posterPath,
@@ -18,6 +20,8 @@ class MovieEntity extends Equatable {
     required this.title,
     required this.voteAverage,
     required this.releaseDate,
+    this.budget,
+    this.revenue,
     this.overview,
   });
 

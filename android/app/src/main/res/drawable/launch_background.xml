@@ -4,14 +4,14 @@
     <item>
         <shape>
             <gradient android:angle="270"
-                android:startColor="#A74DBC"
-                android:endColor="#604FEF" />
+                android:startColor="#FFFFFF"
+                android:endColor="#FFFFFF" />
         </shape>
     </item>
 
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/logo" />
+            android:src="@mipmap/launcher_icon_adaptive_fore" />
     </item>
 </layer-list>

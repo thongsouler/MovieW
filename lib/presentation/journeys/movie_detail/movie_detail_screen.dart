@@ -16,6 +16,7 @@ import 'big_poster.dart';
 import 'cast_widget.dart';
 import 'movie_detail_arguments.dart';
 import 'videos_widget.dart';
+import 'package:intl/intl.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   final MovieDetailArguments movieDetailArguments;
@@ -85,9 +86,49 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                         horizontal: Sizes.dimen_16.w,
                         vertical: Sizes.dimen_8.h,
                       ),
-                      child: Text(
-                        movieDetail.overview ?? '',
-                        style: Theme.of(context).textTheme.bodyText2,
+                      child: Column(
+                        children: [
+                          Text(
+                            movieDetail.overview ?? '',
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: ListTile(
+                                  title: Text("Budget",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
+                                  subtitle: Text(
+                                      (NumberFormat.simpleCurrency()
+                                          .format((movieDetail.budget ?? ""))),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2),
+                                ),
+                              ),
+                              Expanded(
+                                child: ListTile(
+                                  title: Text("Revenue",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
+                                  subtitle: Text(
+                                      (NumberFormat.simpleCurrency()
+                                          .format(movieDetail.revenue ?? "")),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                     VideosWidget(videosCubit: _videosCubit),
