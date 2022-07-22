@@ -53,6 +53,8 @@ dependencies:
   firebase_analytics: ^9.1.1
   share_plus: ^3.0.1
   intl: ^0.17.0
+  google_maps_flutter: ^2.0.9
+  flutter_polyline_points: ^1.0.0
 
 dev_dependencies:
   hive_generator: ^1.1.0

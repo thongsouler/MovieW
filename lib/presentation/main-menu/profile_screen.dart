@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:movieapp/data/data_sources/account_remote_source.dart';
+import 'package:movieapp/presentation/journeys/cinema_map/cinema_map_screen.dart';
 import 'package:movieapp/presentation/journeys/drawer/navigation_expanded_list_item.dart';
 import 'package:movieapp/presentation/journeys/drawer/navigation_list_item.dart';
 import 'package:movieapp/presentation/widgets/separator.dart';
@@ -104,6 +105,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       title: TranslationConstants.favoriteMovies.t(context),
                       onPressed: () {
                         Navigator.of(context).pushNamed(RouteList.favorite);
+                      },
+                    ),
+                    NavigationListItem(
+                      title: TranslationConstants.favoriteMovies.t(context),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MapScreen()));
                       },
                     ),
                     NavigationExpandedListItem(
