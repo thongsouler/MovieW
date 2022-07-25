@@ -6,7 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'direction_model.dart';
 
 class DirectionsRepository {
-  static final googleAPIKey = "";
+  static final googleAPIKey = "AIzaSyCT3TSeqDmAy3WmF_UKTv-BQt5lhPke_HQ";
   static const String _baseUrl =
       'https://maps.googleapis.com/maps/api/directions/json?';
 

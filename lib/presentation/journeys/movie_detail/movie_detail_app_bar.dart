@@ -33,10 +33,12 @@ class _MovieDetailAppBarState extends State<MovieDetailAppBar> {
 
   void getUsername() async {
     final authenticationBox = await Hive.openBox('authenticationBox');
-    setState(() {
-      username = authenticationBox.get('id');
-      print(username);
-    });
+    if (username != "") {
+      setState(() {
+        username = authenticationBox.get('id');
+        print(username);
+      });
+    }
   }
 
   @override

@@ -40,7 +40,9 @@
     "watchlist1": "My Watchlist Movies",
     "favorite1": "My Favorite Movies",
     "watchlist2": "Should try to watch all",
-    "favorite2": "Yeah, i love them !"
+    "favorite2": "Yeah, i love them !",
+    "map": "Cinema Map",
+    "regis": "Don't have TMDB account, register now!"
     
 
 }

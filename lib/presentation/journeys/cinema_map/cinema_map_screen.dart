@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
+import 'package:movieapp/common/constants/translation_constants.dart';
+import 'package:movieapp/presentation/themes/theme_color.dart';
+import '../../../common/extensions/string_extensions.dart';
 import 'direction_model.dart';
 import 'direction_repository.dart';
 
@@ -20,6 +24,13 @@ class _MapScreenState extends State<MapScreen> {
   Marker? _origin;
   Marker? _destination;
   Directions? _info;
+  BitmapDescriptor? pinLocationIcon;
+
+  @override
+  void initState() {
+    setCustomMapPin();
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -27,12 +38,23 @@ class _MapScreenState extends State<MapScreen> {
     super.dispose();
   }
 
+  void setCustomMapPin() async {
+    pinLocationIcon = await BitmapDescriptor.fromAssetImage(
+        ImageConfiguration(devicePixelRatio: 2.5), 'assets/pngs/cinema.png');
+  }
+
   @override
   Widget build(BuildContext context) {
+    LatLng pinPosition = LatLng(20.9758809, 105.8134048);
+
+    // these are the minimum required values to set
+    // the camera position
+    CameraPosition initialLocation =
+        CameraPosition(zoom: 16, bearing: 30, target: pinPosition);
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
-        title: const Text('Google Maps'),
+        title: Text(TranslationConstants.map.t(context)),
         actions: [
           if (_origin != null)
             TextButton(
@@ -40,7 +62,7 @@ class _MapScreenState extends State<MapScreen> {
                 CameraUpdate.newCameraPosition(
                   CameraPosition(
                     target: _origin!.position,
-                    zoom: 14.5,
+                    zoom: 16.5,
                     tilt: 50.0,
                   ),
                 ),
@@ -57,7 +79,7 @@ class _MapScreenState extends State<MapScreen> {
                 CameraUpdate.newCameraPosition(
                   CameraPosition(
                     target: _destination!.position,
-                    zoom: 14.5,
+                    zoom: 16.5,
                     tilt: 50.0,
                   ),
                 ),
@@ -74,11 +96,30 @@ class _MapScreenState extends State<MapScreen> {
         alignment: Alignment.center,
         children: [
           GoogleMap(
+            myLocationEnabled: true,
+            compassEnabled: true,
             myLocationButtonEnabled: false,
             zoomControlsEnabled: false,
-            initialCameraPosition: _initialCameraPosition,
-            onMapCreated: (controller) => _googleMapController = controller,
+            initialCameraPosition: initialLocation,
+            onMapCreated: (GoogleMapController controller) {
+              _googleMapController = controller;
+              setState(() {
+                Marker(
+                  markerId: const MarkerId('LinhDamMovieTheater'),
+                  infoWindow: const InfoWindow(title: 'Linh Dam Movie Theater'),
+                  icon: pinLocationIcon!,
+                  position: pinPosition,
+                );
+              });
+            },
             markers: {
+              if (pinLocationIcon != null)
+                Marker(
+                  markerId: const MarkerId('LinhDamMovieTheater'),
+                  infoWindow: const InfoWindow(title: 'Linh Dam Movie Theater',),
+                  icon: pinLocationIcon!,
+                  position: pinPosition,
+                ),
               if (_origin != null) _origin!,
               if (_destination != null) _destination!
             },
@@ -104,7 +145,7 @@ class _MapScreenState extends State<MapScreen> {
                   horizontal: 12.0,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.yellowAccent,
+                  color: AppColor.royalBlue,
                   borderRadius: BorderRadius.circular(20.0),
                   boxShadow: const [
                     BoxShadow(
@@ -114,12 +155,24 @@ class _MapScreenState extends State<MapScreen> {
                     )
                   ],
                 ),
-                child: Text(
-                  '${_info!.totalDistance}, ${_info!.totalDuration}',
-                  style: const TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w600,
-                  ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Quãng đường: "
+                      '${_info!.totalDistance}',
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      " Thời gian ước tính:  ${_info!.totalDuration}",
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -127,7 +180,7 @@ class _MapScreenState extends State<MapScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
-        foregroundColor: Colors.black,
+        foregroundColor: Colors.white,
         onPressed: () => _googleMapController!.animateCamera(
           _info != null
               ? CameraUpdate.newLatLngBounds(_info!.bounds, 100.0)
@@ -174,4 +227,5 @@ class _MapScreenState extends State<MapScreen> {
       setState(() => _info = directions!);
     }
   }
+  
 }

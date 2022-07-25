@@ -10,6 +10,7 @@ import '../../blocs/login/login_cubit.dart';
 import '../../themes/theme_text.dart';
 import '../../widgets/button.dart';
 import 'label_field_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -117,9 +118,23 @@ class _LoginFormState extends State<LoginForm> {
               },
               text: TranslationConstants.guestSignIn,
             ),
+            TextButton(
+                onPressed: () {
+                  _launchURL();
+                },
+                child: Text(TranslationConstants.regis.t(context)))
           ],
         ),
       ),
     );
+  }
+
+  _launchURL() async {
+    const url = 'https://www.themoviedb.org/signup?language=vi';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

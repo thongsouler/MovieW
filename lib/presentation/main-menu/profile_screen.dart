@@ -108,7 +108,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     ),
                     NavigationListItem(
-                      title: TranslationConstants.favoriteMovies.t(context),
+                      title: TranslationConstants.map.t(context),
                       onPressed: () {
                         Navigator.push(
                             context,
