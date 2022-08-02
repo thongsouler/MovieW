@@ -116,7 +116,9 @@ class _MapScreenState extends State<MapScreen> {
               if (pinLocationIcon != null)
                 Marker(
                   markerId: const MarkerId('LinhDamMovieTheater'),
-                  infoWindow: const InfoWindow(title: 'Linh Dam Movie Theater',),
+                  infoWindow: const InfoWindow(
+                    title: 'Linh Dam Movie Theater',
+                  ),
                   icon: pinLocationIcon!,
                   position: pinPosition,
                 ),
@@ -227,5 +229,4 @@ class _MapScreenState extends State<MapScreen> {
       setState(() => _info = directions!);
     }
   }
-  
 }

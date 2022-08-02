@@ -23,6 +23,8 @@ import 'package:movieapp/presentation/blocs/theme/theme_cubit.dart';
 import 'package:movieapp/presentation/journeys/cinema_map/cinema_map_screen.dart';
 import 'package:movieapp/presentation/journeys/movie_detail/movie_detail_arguments.dart';
 import 'package:movieapp/presentation/journeys/movie_detail/movie_detail_screen.dart';
+import 'package:movieapp/presentation/journeys/news/main_news_screen.dart';
+import 'package:movieapp/presentation/journeys/news/news_screen.dart';
 import 'package:movieapp/presentation/journeys/search_movie/custom_search_movie_delegate.dart';
 import 'package:movieapp/presentation/themes/theme_color.dart';
 import 'package:movieapp/presentation/widgets/movie_app_bar.dart';
@@ -345,6 +347,33 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
                         child: Image.asset('assets/pngs/map.png')),
+                  ),
+                  //
+                  SizedBox(
+                    height: 13,
+                  ),
+                  Text("Entertainment News".toUpperCase(),
+                      style: Theme.of(context).textTheme.royalBlueSubtitle1),
+
+                  SizedBox(
+                    height: 8,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MainNewsScreen()));
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Image.asset(
+                            'assets/pngs/news.png',
+                            fit: BoxFit.cover,
+                          )),
+                    ),
                   ),
                 ],
               ),

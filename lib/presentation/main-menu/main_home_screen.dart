@@ -11,9 +11,11 @@ import 'package:movieapp/presentation/blocs/personbloc/person_bloc.dart';
 import 'package:movieapp/presentation/blocs/personbloc/person_event.dart';
 import 'package:movieapp/presentation/blocs/personbloc/person_state.dart';
 import 'package:movieapp/presentation/journeys/favorite/favorite_screen.dart';
+import 'package:movieapp/presentation/journeys/news/news_screen.dart';
 import 'package:movieapp/presentation/main-menu/category_screen.dart';
 import 'package:movieapp/presentation/main-menu/my_list_screen.dart';
 import 'package:movieapp/presentation/main-menu/profile_screen.dart';
+import 'package:movieapp/presentation/main-menu/search_screen.dart';
 import 'package:movieapp/presentation/widgets/separator.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
@@ -105,7 +107,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               /// Search
               SalomonBottomBarItem(
                 icon: Icon(Icons.search),
-                title: Text("Search"),
+                title: Text("Discover"),
                 selectedColor: Colors.orange,
               ),
 
@@ -201,6 +203,20 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                           ),
                                         ],
                                       ),
+                                      SizedBox(
+                                        height: 12,
+                                      ),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Entertainment News".toUpperCase(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .royalBlueSubtitle1,
+                                        ),
+                                      ),
+                                      Center(child: Separator()),
+                                      buildNews()
                                     ],
                                   ),
                                 ),
@@ -235,7 +251,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                   return MyListScreen();
                 // return CheckOutPage();
                 case 2:
-                  // return SearchScreen();
                   return BuildWidgetCategory();
 
                 case 3:
@@ -339,6 +354,15 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  buildNews() {
+    return Container(
+      height: 400,
+      child: Entertainment(
+        post: fetchPostEntertainment(),
       ),
     );
   }
