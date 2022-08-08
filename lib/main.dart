@@ -7,10 +7,14 @@ import 'data/tables/movie_table.dart';
 import 'di/get_it.dart' as getIt;
 import 'presentation/movie_app.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movieapp/cinema_ticket/services/auth_service.dart';
+import 'package:movieapp/cinema_ticket/views/login_screen.dart';
+import 'package:provider/provider.dart';
 
-
-
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   //  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
@@ -21,4 +25,23 @@ void main() async {
   Hive.registerAdapter(MovieTableAdapter());
   unawaited(getIt.init());
   runApp(MovieApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationService>(
+          create: (_) => AuthenticationService(FirebaseAuth.instance),
+        ),
+        StreamProvider(
+          create: (context) =>
+              context.read<AuthenticationService>().authStateChanges,
+          initialData: null,
+        )
+      ],
+      child: giris(),
+    );
+  }
 }

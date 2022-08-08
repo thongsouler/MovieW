@@ -4,6 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movieapp/cinema_ticket/views/setting_screen.dart';
+import 'package:movieapp/cinema_ticket/views/cinema_film_screen.dart';
 import 'package:movieapp/common/constants/size_constants.dart';
 import 'package:movieapp/common/constants/translation_constants.dart';
 import 'package:movieapp/data/models/person.dart';
@@ -93,28 +95,28 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
               /// Home
               SalomonBottomBarItem(
                 icon: Icon(Icons.home),
-                title: Text("Home"),
+                title: Text("Trang chủ"),
                 selectedColor: Colors.purple,
               ),
 
               /// Likes
               SalomonBottomBarItem(
-                icon: Icon(Icons.favorite_border),
-                title: Text("Likes"),
+                icon: Icon(Icons.shopping_cart),
+                title: Text("Đặt vé"),
                 selectedColor: Colors.pink,
               ),
 
               /// Search
               SalomonBottomBarItem(
                 icon: Icon(Icons.search),
-                title: Text("Discover"),
+                title: Text("Khám phá"),
                 selectedColor: Colors.orange,
               ),
 
               /// Profile
               SalomonBottomBarItem(
                 icon: Icon(Icons.person),
-                title: Text("Profile"),
+                title: Text("Menu"),
                 selectedColor: Colors.teal,
               ),
             ]),
@@ -215,7 +217,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                                               .royalBlueSubtitle1,
                                         ),
                                       ),
-                                      Center(child: Separator()),
+                                      // Center(child: Separator()),
                                       buildNews()
                                     ],
                                   ),
@@ -248,12 +250,13 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                 //   ],
                 // );
                 case 1:
-                  return MyListScreen();
-                // return CheckOutPage();
+                  return Cinema();
+                // return MyListScreen();
                 case 2:
                   return BuildWidgetCategory();
 
                 case 3:
+                  // return SettingScreen();
                   return ProfileScreen();
 
                 default:

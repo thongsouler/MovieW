@@ -65,13 +65,13 @@ class NavigationDrawer extends StatelessWidget {
                 Wiredash.of(context)?.show();
               },
             ),
-            NavigationListItem(
-              title: TranslationConstants.about.t(context),
-              onPressed: () {
-                Navigator.of(context).pop();
-                _showDialog(context);
-              },
-            ),
+            // NavigationListItem(
+            //   title: TranslationConstants.about.t(context),
+            //   onPressed: () {
+            //     Navigator.of(context).pop();
+            //     _showDialog(context);
+            //   },
+            // ),
             BlocListener<LoginCubit, LoginState>(
               listenWhen: (previous, current) => current is LogoutSuccess,
               listener: (context, state) {

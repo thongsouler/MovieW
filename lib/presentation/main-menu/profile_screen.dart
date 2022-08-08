@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
+import 'package:movieapp/cinema_ticket/services/auth_service.dart';
+import 'package:movieapp/cinema_ticket/views/my_ticket_screen.dart';
 import 'package:movieapp/data/data_sources/account_remote_source.dart';
 import 'package:movieapp/presentation/journeys/cinema_map/cinema_map_screen.dart';
 import 'package:movieapp/presentation/journeys/drawer/navigation_expanded_list_item.dart';
 import 'package:movieapp/presentation/journeys/drawer/navigation_list_item.dart';
+import 'package:movieapp/presentation/main-menu/my_list_screen.dart';
 import 'package:movieapp/presentation/widgets/separator.dart';
 import '../blocs/theme/theme_cubit.dart';
 import '../themes/theme_color.dart';
@@ -102,9 +105,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     divider(),
                     NavigationListItem(
-                      title: TranslationConstants.favoriteMovies.t(context),
+                      title: TranslationConstants.mylist.t(context),
                       onPressed: () {
-                        Navigator.of(context).pushNamed(RouteList.favorite);
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyListScreen()));
                       },
                     ),
                     NavigationListItem(
@@ -130,10 +136,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     ),
                     NavigationListItem(
-                      title: TranslationConstants.about.t(context),
+                      title: TranslationConstants.myticket.t(context),
                       onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyTicketScreen()));
                         // Navigator.of(context).pop();
-                        _showDialog(context);
+                        // _showDialog(context);
                       },
                     ),
                     BlocBuilder<ThemeCubit, Themes>(builder: (context, theme) {
@@ -183,6 +193,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           BlocProvider.of<LoginCubit>(context).logout();
                         },
                       ),
+                    ),
+                    NavigationListItem(
+                      title: TranslationConstants.logout.t(context),
+                      onPressed: () {
+                        BlocProvider.of<LoginCubit>(context).logout();
+                        // context.read<AuthenticationService>().signOut();
+                      },
                     ),
                   ],
                 ),

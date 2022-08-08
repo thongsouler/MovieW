@@ -7,7 +7,7 @@ import 'package:movieapp/presentation/themes/theme_color.dart';
 
 Future<Post> fetchPostEntertainment() async {
   final response = await http.get(Uri.parse(
-      'https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=47ada2986be0434699996aaf4902169b'));
+      'https://newsapi.org/v2/top-headlines?country=us&category=entertainment&apiKey=47ada2986be0434699996aaf4902169b'));
 
   if (response.statusCode == 200) {
     // If the call to the server was successful, parse the JSON

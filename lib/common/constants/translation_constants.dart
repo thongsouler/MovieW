@@ -44,6 +44,6 @@ class TranslationConstants {
   static const String watchlist2 = 'watchlist2';
   static const String favorite2 = 'favorite2';
   static const String map = 'map';
-   static const String regis = 'regis';
-
+  static const String regis = 'regis';
+  static const String myticket = 'myticket';
 }

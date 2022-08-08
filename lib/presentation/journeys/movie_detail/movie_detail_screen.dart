@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapp/presentation/blocs/watchlist/watchlist_cubit.dart';
-import 'package:movieapp/presentation/journeys/buy_ticket/buy_ticket.dart';
-import 'package:movieapp/presentation/widgets/button.dart';
 import '../../../common/constants/size_constants.dart';
 import '../../../common/constants/translation_constants.dart';
 import '../../../common/extensions/size_extensions.dart';
@@ -141,27 +139,27 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                       ),
                     ),
                     CastWidget(),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30.0, right: 30),
-                      child: Button(
-                        onPressed: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => BuyTicket(
-                          //             movieDetail.title,
-                          //             movieDetail.posterPath)));
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => BuyTicket(
-                                        movieDetail.title,
-                                        movieDetail.posterPath,
-                                      )));
-                        },
-                        text: TranslationConstants.buyticket,
-                      ),
-                    )
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 30.0, right: 30),
+                    //   child: Button(
+                    //     onPressed: () {
+                    //       // Navigator.push(
+                    //       //     context,
+                    //       //     MaterialPageRoute(
+                    //       //         builder: (context) => BuyTicket(
+                    //       //             movieDetail.title,
+                    //       //             movieDetail.posterPath)));
+                    //       Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //               builder: (context) => BuyTicket(
+                    //                     movieDetail.title,
+                    //                     movieDetail.posterPath,
+                    //                   )));
+                    //     },
+                    //     text: TranslationConstants.buyticket,
+                    //   ),
+                    // )
                   ],
                 ),
               );
